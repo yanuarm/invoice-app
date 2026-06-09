@@ -27,6 +27,7 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
+import { index as customersIndex } from '@/routes/customers';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -39,7 +40,7 @@ const mainNavItems: NavItem[] = [
         title: 'Master Data',
         icon: Package,
         items: [
-            { title: 'Customers', href: '#', icon: Users },
+            { title: 'Customers', href: customersIndex(), icon: Users },
             { title: 'Products', href: '#', icon: Package },
         ],
     },
