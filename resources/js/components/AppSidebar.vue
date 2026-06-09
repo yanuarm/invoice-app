@@ -1,6 +1,18 @@
 <script setup lang="ts">
 import { Link } from '@inertiajs/vue3';
-import { BookOpen, FolderGit2, LayoutGrid } from '@lucide/vue';
+import {
+    BarChart3,
+    BookOpen,
+    Building2,
+    CreditCard,
+    FileText,
+    FolderGit2,
+    LayoutGrid,
+    Package,
+    Receipt,
+    Settings2,
+    Users,
+} from '@lucide/vue';
 import AppLogo from '@/components/AppLogo.vue';
 import NavFooter from '@/components/NavFooter.vue';
 import NavMain from '@/components/NavMain.vue';
@@ -22,6 +34,38 @@ const mainNavItems: NavItem[] = [
         title: 'Dashboard',
         href: dashboard(),
         icon: LayoutGrid,
+    },
+    {
+        title: 'Master Data',
+        icon: Package,
+        items: [
+            { title: 'Customers', href: '#', icon: Users },
+            { title: 'Products', href: '#', icon: Package },
+        ],
+    },
+    {
+        title: 'Transactions',
+        icon: Receipt,
+        items: [
+            { title: 'Invoices', href: '#', icon: FileText },
+            { title: 'Payments', href: '#', icon: CreditCard },
+        ],
+    },
+    {
+        title: 'Reports',
+        icon: BarChart3,
+        items: [
+            { title: 'Revenue Report', href: '#' },
+            { title: 'Invoice Report', href: '#' },
+        ],
+    },
+    {
+        title: 'Settings',
+        icon: Settings2,
+        items: [
+            { title: 'Company Profile', href: '#', icon: Building2 },
+            { title: 'Invoice Settings', href: '#', icon: Settings2 },
+        ],
     },
 ];
 
