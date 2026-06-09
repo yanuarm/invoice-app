@@ -8,6 +8,7 @@ use App\Models\Customer;
 use App\Models\Invoice;
 use App\Models\Product;
 use App\Services\InvoiceService;
+use App\Services\PdfService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -17,7 +18,8 @@ use Inertia\Response;
 class InvoiceController extends Controller
 {
     public function __construct(
-        protected InvoiceService $invoiceService
+        protected InvoiceService $invoiceService,
+        protected PdfService $pdfService,
     ) {}
 
     public function index(Request $request): Response
@@ -114,6 +116,20 @@ class InvoiceController extends Controller
         Inertia::flash('toast', ['type' => 'success', 'message' => __('Invoice updated.')]);
 
         return to_route('invoices.show', $invoice);
+    }
+
+    public function pdf(Invoice $invoice): \Illuminate\Http\Response
+    {
+        Gate::authorize('update', $invoice);
+
+        return $this->pdfService->previewInvoice($invoice);
+    }
+
+    public function download(Invoice $invoice): \Illuminate\Http\Response
+    {
+        Gate::authorize('update', $invoice);
+
+        return $this->pdfService->downloadInvoice($invoice);
     }
 
     public function destroy(Invoice $invoice): RedirectResponse

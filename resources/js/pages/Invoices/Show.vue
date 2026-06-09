@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
-import { Pencil } from '@lucide/vue';
+import { Download, FileText, Pencil } from '@lucide/vue';
 import Heading from '@/components/Heading.vue';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -19,7 +19,7 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import { dashboard } from '@/routes';
-import { index, edit } from '@/routes/invoices';
+import { download, index, edit, pdf } from '@/routes/invoices';
 
 type Payment = {
     id: number;
@@ -94,12 +94,26 @@ function getStatusVariant(status: string): string {
 
     <div class="flex items-center justify-between">
         <Heading title="Invoice Detail" :description="invoice.invoice_number" variant="small" />
-        <Link :href="edit(invoice.id)">
-            <Button variant="outline">
-                <Pencil class="mr-1 h-4 w-4" />
-                Edit
-            </Button>
-        </Link>
+        <div class="flex gap-2">
+            <a :href="pdf(invoice.id)" target="_blank">
+                <Button variant="outline">
+                    <FileText class="mr-1 h-4 w-4" />
+                    PDF
+                </Button>
+            </a>
+            <a :href="download(invoice.id)">
+                <Button variant="outline">
+                    <Download class="mr-1 h-4 w-4" />
+                    Download
+                </Button>
+            </a>
+            <Link :href="edit(invoice.id)">
+                <Button variant="outline">
+                    <Pencil class="mr-1 h-4 w-4" />
+                    Edit
+                </Button>
+            </Link>
+        </div>
     </div>
 
     <div class="grid gap-6 md:grid-cols-2">
