@@ -28,6 +28,7 @@ import {
 } from '@/components/ui/sidebar';
 import { dashboard } from '@/routes';
 import { index as customersIndex } from '@/routes/customers';
+import { index as productsIndex } from '@/routes/products';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -41,7 +42,7 @@ const mainNavItems: NavItem[] = [
         icon: Package,
         items: [
             { title: 'Customers', href: customersIndex(), icon: Users },
-            { title: 'Products', href: '#', icon: Package },
+            { title: 'Products', href: productsIndex(), icon: Package },
         ],
     },
     {
