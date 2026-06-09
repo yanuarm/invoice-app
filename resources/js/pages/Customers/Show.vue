@@ -48,6 +48,7 @@ defineOptions({
 </script>
 
 <template>
+    <div class="flex flex-col gap-6 p-6">
     <Head :title="customer.name" />
 
     <div class="flex items-center justify-between">
@@ -118,5 +119,6 @@ defineOptions({
                 </div>
             </CardContent>
         </Card>
+    </div>
     </div>
 </template>

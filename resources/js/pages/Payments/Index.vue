@@ -81,6 +81,7 @@ function destroy(paymentId: number) {
 </script>
 
 <template>
+    <div class="flex flex-col gap-6 p-6">
     <Head title="Payments" />
 
     <Heading title="Payments" description="Record and manage payments" />
@@ -176,5 +177,6 @@ function destroy(paymentId: number) {
 
     <div v-if="payments?.meta?.total > 0" class="mt-4">
         <AppPagination :links="payments.links" :meta="payments.meta" />
+    </div>
     </div>
 </template>

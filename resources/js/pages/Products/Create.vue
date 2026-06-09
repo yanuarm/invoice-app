@@ -41,6 +41,7 @@ defineOptions({
 </script>
 
 <template>
+    <div class="flex flex-col gap-6 p-6">
     <Head title="Create Product" />
 
     <Heading title="Create Product" description="Add a new product" />
@@ -112,5 +113,6 @@ defineOptions({
                 <InputError :message="form.errors.description" />
             </div>
         </AppForm>
+    </div>
     </div>
 </template>

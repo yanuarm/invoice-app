@@ -70,6 +70,7 @@ function formatCurrency(value: number | string): string {
 </script>
 
 <template>
+    <div class="flex flex-col gap-6 p-6">
     <Head title="Customer Report" />
 
     <Heading title="Customer Report" description="Customer performance summary" />
@@ -131,4 +132,5 @@ function formatCurrency(value: number | string): string {
             </Table>
         </CardContent>
     </Card>
+    </div>
 </template>

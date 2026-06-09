@@ -90,6 +90,7 @@ function getStatusVariant(status: string): string {
 </script>
 
 <template>
+    <div class="flex flex-col gap-6 p-6">
     <Head :title="invoice.invoice_number" />
 
     <div class="flex items-center justify-between">
@@ -239,4 +240,5 @@ function getStatusVariant(status: string): string {
             </Table>
         </CardContent>
     </Card>
+    </div>
 </template>

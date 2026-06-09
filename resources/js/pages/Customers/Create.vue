@@ -42,6 +42,7 @@ defineOptions({
 </script>
 
 <template>
+    <div class="flex flex-col gap-6 p-6">
     <Head title="Create Customer" />
 
     <Heading title="Create Customer" description="Add a new customer" />
@@ -108,5 +109,6 @@ defineOptions({
                 <InputError :message="form.errors.tax_number" />
             </div>
         </AppForm>
+    </div>
     </div>
 </template>

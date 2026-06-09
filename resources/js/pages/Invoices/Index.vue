@@ -88,6 +88,7 @@ function getStatusVariant(status: string): string {
 </script>
 
 <template>
+    <div class="flex flex-col gap-6 p-6">
     <Head title="Invoices" />
 
     <Heading title="Invoices" description="Manage your invoices" />
@@ -192,5 +193,6 @@ function getStatusVariant(status: string): string {
 
     <div v-if="invoices?.meta?.total > 0" class="mt-4">
         <AppPagination :links="invoices.links" :meta="invoices.meta" />
+    </div>
     </div>
 </template>

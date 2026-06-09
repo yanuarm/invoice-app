@@ -73,6 +73,7 @@ function destroy(productId: number) {
 </script>
 
 <template>
+    <div class="flex flex-col gap-6 p-6">
     <Head title="Products" />
 
     <Heading title="Products" description="Manage your products" />
@@ -154,5 +155,6 @@ function destroy(productId: number) {
 
     <div v-if="products?.meta?.total > 0" class="mt-4">
         <AppPagination :links="products.links" :meta="products.meta" />
+    </div>
     </div>
 </template>

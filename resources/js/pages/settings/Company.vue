@@ -55,6 +55,7 @@ function submit() {
 </script>
 
 <template>
+    <div class="flex flex-col gap-6 p-6">
     <Head title="Company Profile" />
 
     <Heading title="Company Profile" description="Manage your company information" />
@@ -103,4 +104,5 @@ function submit() {
             </Button>
         </div>
     </form>
+    </div>
 </template>

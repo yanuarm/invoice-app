@@ -74,6 +74,7 @@ defineOptions({
 </script>
 
 <template>
+    <div class="flex flex-col gap-6 p-6">
     <Head title="Record Payment" />
 
     <Heading title="Record Payment" description="Record a payment against an invoice" />
@@ -159,5 +160,6 @@ defineOptions({
                 <InputError :message="form.errors.notes" />
             </div>
         </AppForm>
+    </div>
     </div>
 </template>

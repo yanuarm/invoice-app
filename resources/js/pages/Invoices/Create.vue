@@ -126,6 +126,7 @@ defineOptions({
 </script>
 
 <template>
+    <div class="flex flex-col gap-6 p-6">
     <Head title="Create Invoice" />
 
     <Heading title="Create Invoice" description="Create a new invoice" />
@@ -300,5 +301,6 @@ defineOptions({
                 </div>
             </div>
         </AppForm>
+    </div>
     </div>
 </template>

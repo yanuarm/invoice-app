@@ -74,6 +74,7 @@ function destroy(customerId: number) {
 
 <template>
     
+    <div class="flex flex-col gap-6 p-6">
     <Head title="Customers" />
 
     <Heading title="Customers" description="Manage your customers" />
@@ -155,5 +156,6 @@ function destroy(customerId: number) {
 
     <div v-if="customers?.meta?.total > 0" class="mt-4">
         <AppPagination :links="customers.links" :meta="customers.meta" />
+    </div>
     </div>
 </template>

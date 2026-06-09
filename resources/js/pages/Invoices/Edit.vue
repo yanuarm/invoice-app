@@ -145,6 +145,7 @@ defineOptions({
 </script>
 
 <template>
+    <div class="flex flex-col gap-6 p-6">
     <Head title="Edit Invoice" />
 
     <Heading title="Edit Invoice" :description="invoice.invoice_number" />
@@ -323,5 +324,6 @@ defineOptions({
                 </div>
             </div>
         </AppForm>
+    </div>
     </div>
 </template>

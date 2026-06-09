@@ -65,6 +65,7 @@ const statusColors: Record<string, string> = {
 </script>
 
 <template>
+    <div class="flex flex-col gap-6 p-6">
     <Head title="Payment Detail" />
 
     <div class="flex items-center justify-between">
@@ -142,4 +143,5 @@ const statusColors: Record<string, string> = {
             <p class="text-sm">{{ payment.notes }}</p>
         </CardContent>
     </Card>
+    </div>
 </template>
