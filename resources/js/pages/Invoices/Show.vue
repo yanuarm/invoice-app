@@ -21,6 +21,15 @@ import {
 import { dashboard } from '@/routes';
 import { index, edit } from '@/routes/invoices';
 
+type Payment = {
+    id: number;
+    amount: string;
+    payment_date: string;
+    method: string;
+    reference_number: string | null;
+    creator: { id: number; name: string } | null;
+};
+
 type InvoiceItem = {
     id: number;
     product: { id: number; name: string };
@@ -47,6 +56,7 @@ type Invoice = {
     updated_at: string;
     creator: { id: number; name: string } | null;
     items: InvoiceItem[];
+    payments: Payment[];
 };
 
 type Props = {
@@ -180,6 +190,39 @@ function getStatusVariant(status: string): string {
                 <p class="text-sm text-muted-foreground">Notes:</p>
                 <p class="text-sm">{{ invoice.notes }}</p>
             </div>
+        </CardContent>
+    </Card>
+
+    <Card class="mt-6">
+        <CardHeader>
+            <CardTitle>Payments</CardTitle>
+        </CardHeader>
+        <CardContent>
+            <Table>
+                <TableHeader>
+                    <TableRow>
+                        <TableHead>Date</TableHead>
+                        <TableHead class="text-right">Amount</TableHead>
+                        <TableHead>Method</TableHead>
+                        <TableHead>Reference</TableHead>
+                        <TableHead>Recorded by</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    <TableRow v-for="pm in invoice.payments" :key="pm.id">
+                        <TableCell>{{ pm.payment_date }}</TableCell>
+                        <TableCell class="text-right font-medium">{{ pm.amount }}</TableCell>
+                        <TableCell>{{ pm.method }}</TableCell>
+                        <TableCell>{{ pm.reference_number ?? '-' }}</TableCell>
+                        <TableCell>{{ pm.creator?.name ?? '-' }}</TableCell>
+                    </TableRow>
+                    <TableRow v-if="!invoice.payments || invoice.payments.length === 0">
+                        <TableCell colspan="5" class="text-center text-muted-foreground py-4">
+                            No payments recorded yet.
+                        </TableCell>
+                    </TableRow>
+                </TableBody>
+            </Table>
         </CardContent>
     </Card>
 </template>

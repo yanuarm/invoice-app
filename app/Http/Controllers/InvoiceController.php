@@ -66,7 +66,7 @@ class InvoiceController extends Controller
     public function store(StoreInvoiceRequest $request): RedirectResponse
     {
         $invoice = $this->invoiceService->createInvoice(
-            $request->validated(),
+            [...$request->validated(), 'created_by' => $request->user()->id],
             $request->input('items', [])
         );
 
@@ -79,7 +79,7 @@ class InvoiceController extends Controller
     {
         Gate::authorize('view', $invoice);
 
-        $invoice->load('customer', 'items.product', 'creator');
+        $invoice->load('customer', 'items.product', 'creator', 'payments.creator:id,name');
 
         return Inertia::render('Invoices/Show', [
             'invoice' => $invoice,
@@ -103,6 +103,8 @@ class InvoiceController extends Controller
 
     public function update(UpdateInvoiceRequest $request, Invoice $invoice): RedirectResponse
     {
+        Gate::authorize('update', $invoice);
+
         $invoice = $this->invoiceService->updateInvoice(
             $invoice,
             $request->validated(),

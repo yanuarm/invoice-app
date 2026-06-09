@@ -20,6 +20,7 @@ class Product extends Model
         'unit',
         'price',
         'status',
+        'created_by',
     ];
 
     protected function casts(): array

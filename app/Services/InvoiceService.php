@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Models\Invoice;
-use App\Models\InvoiceItem;
 use Illuminate\Support\Str;
 
 class InvoiceService
@@ -24,7 +23,7 @@ class InvoiceService
             $nextNumber = 1;
         }
 
-        return "{$prefix}{$date}-" . str_pad((string) $nextNumber, 4, '0', STR_PAD_LEFT);
+        return "{$prefix}{$date}-".str_pad((string) $nextNumber, 4, '0', STR_PAD_LEFT);
     }
 
     public function calculateItemTotal(float $qty, float $price, float $discount): float
@@ -75,7 +74,7 @@ class InvoiceService
             'grand_total' => $grandTotal,
             'status' => $data['status'] ?? 'draft',
             'notes' => $data['notes'] ?? null,
-            'created_by' => auth()->id(),
+            'created_by' => $data['created_by'] ?? auth()->id(),
         ]);
 
         foreach ($items as $item) {

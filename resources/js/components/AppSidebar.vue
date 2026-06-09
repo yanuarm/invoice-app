@@ -30,6 +30,7 @@ import { dashboard } from '@/routes';
 import { index as customersIndex } from '@/routes/customers';
 import { index as productsIndex } from '@/routes/products';
 import { index as invoicesIndex } from '@/routes/invoices';
+import { index as paymentsIndex } from '@/routes/payments';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -51,7 +52,7 @@ const mainNavItems: NavItem[] = [
         icon: Receipt,
         items: [
             { title: 'Invoices', href: invoicesIndex(), icon: FileText },
-            { title: 'Payments', href: '#', icon: CreditCard },
+            { title: 'Payments', href: paymentsIndex(), icon: CreditCard },
         ],
     },
     {

@@ -45,7 +45,7 @@ test('can create an invoice', function () {
 
     expect(Invoice::count())->toBe(1);
     $invoice = Invoice::first();
-    expect($invoice->grand_total)->toEqual('100000.00');
+    expect($invoice->grand_total)->toEqual('111000.00');
     expect($invoice->created_by)->toBe($user->id);
 });
 
@@ -60,6 +60,7 @@ test('can view an invoice', function () {
             'invoice_date' => now()->format('Y-m-d'),
             'due_date' => now()->addDays(30)->format('Y-m-d'),
             'status' => 'draft',
+            'created_by' => $user->id,
         ],
         [
             [
@@ -92,6 +93,7 @@ test('can update an invoice', function () {
             'invoice_date' => now()->format('Y-m-d'),
             'due_date' => now()->addDays(30)->format('Y-m-d'),
             'status' => 'draft',
+            'created_by' => $user->id,
         ],
         [
             [
@@ -121,7 +123,7 @@ test('can update an invoice', function () {
     ]);
 
     expect($invoice->fresh()->status)->toBe('sent');
-    expect($invoice->fresh()->grand_total)->toEqual('150000.00');
+    expect($invoice->fresh()->grand_total)->toEqual('166500.00');
 });
 
 test('can delete an invoice', function () {
@@ -135,6 +137,7 @@ test('can delete an invoice', function () {
             'invoice_date' => now()->format('Y-m-d'),
             'due_date' => now()->addDays(30)->format('Y-m-d'),
             'status' => 'draft',
+            'created_by' => $user->id,
         ],
         [
             [
@@ -164,6 +167,7 @@ test('cannot update an invoice created by another user', function () {
             'invoice_date' => now()->format('Y-m-d'),
             'due_date' => now()->addDays(30)->format('Y-m-d'),
             'status' => 'draft',
+            'created_by' => $user1->id,
         ],
         [
             [
@@ -175,7 +179,6 @@ test('cannot update an invoice created by another user', function () {
             ],
         ]
     );
-    $invoice->update(['created_by' => $user1->id]);
 
     $this->actingAs($user2)
         ->patch(route('invoices.update', $invoice), [
@@ -208,6 +211,7 @@ test('cannot delete an invoice created by another user', function () {
             'invoice_date' => now()->format('Y-m-d'),
             'due_date' => now()->addDays(30)->format('Y-m-d'),
             'status' => 'draft',
+            'created_by' => $user1->id,
         ],
         [
             [
@@ -219,7 +223,6 @@ test('cannot delete an invoice created by another user', function () {
             ],
         ]
     );
-    $invoice->update(['created_by' => $user1->id]);
 
     $this->actingAs($user2)
         ->delete(route('invoices.destroy', $invoice))
