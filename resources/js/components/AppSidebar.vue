@@ -32,6 +32,7 @@ import { index as productsIndex } from '@/routes/products';
 import { index as invoicesIndex } from '@/routes/invoices';
 import { index as paymentsIndex } from '@/routes/payments';
 import { edit as companyEdit } from '@/routes/company';
+import { revenue, invoices as reportsInvoices, customers as reportsCustomers } from '@/routes/reports';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -60,8 +61,9 @@ const mainNavItems: NavItem[] = [
         title: 'Reports',
         icon: BarChart3,
         items: [
-            { title: 'Revenue Report', href: '#' },
-            { title: 'Invoice Report', href: '#' },
+            { title: 'Revenue Report', href: revenue() },
+            { title: 'Invoice Report', href: reportsInvoices() },
+            { title: 'Customer Report', href: reportsCustomers() },
         ],
     },
     {
