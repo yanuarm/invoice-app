@@ -31,6 +31,7 @@ import { index as customersIndex } from '@/routes/customers';
 import { index as productsIndex } from '@/routes/products';
 import { index as invoicesIndex } from '@/routes/invoices';
 import { index as paymentsIndex } from '@/routes/payments';
+import { edit as companyEdit } from '@/routes/company';
 import type { NavItem } from '@/types';
 
 const mainNavItems: NavItem[] = [
@@ -67,8 +68,7 @@ const mainNavItems: NavItem[] = [
         title: 'Settings',
         icon: Settings2,
         items: [
-            { title: 'Company Profile', href: '#', icon: Building2 },
-            { title: 'Invoice Settings', href: '#', icon: Settings2 },
+            { title: 'Company Profile', href: companyEdit(), icon: Building2 },
         ],
     },
 ];

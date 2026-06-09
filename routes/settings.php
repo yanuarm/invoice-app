@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Settings\CompanyProfileController;
 use App\Http\Controllers\Settings\ProfileController;
 use App\Http\Controllers\Settings\SecurityController;
 use Illuminate\Auth\Middleware\RequirePassword;
@@ -22,6 +23,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::put('settings/password', [SecurityController::class, 'update'])
         ->middleware('throttle:6,1')
         ->name('user-password.update');
+
+    Route::get('settings/company', [CompanyProfileController::class, 'edit'])->name('company.edit');
+    Route::patch('settings/company', [CompanyProfileController::class, 'update'])->name('company.update');
 
     Route::inertia('settings/appearance', 'settings/Appearance')->name('appearance.edit');
 });

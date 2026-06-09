@@ -3,16 +3,17 @@
 namespace App\Services;
 
 use App\Models\Invoice;
+use App\Models\Setting;
 use Illuminate\Support\Str;
 
 class InvoiceService
 {
     public function generateInvoiceNumber(): string
     {
-        $prefix = 'INV';
-        $date = now()->format('Ymd');
+        $prefix = Setting::getInvoicePrefix();
+        $date = now()->format('Ym');
 
-        $last = Invoice::where('invoice_number', 'like', "{$prefix}{$date}-%")
+        $last = Invoice::where('invoice_number', 'like', "{$prefix}-{$date}-%")
             ->orderBy('invoice_number', 'desc')
             ->first();
 
@@ -23,7 +24,7 @@ class InvoiceService
             $nextNumber = 1;
         }
 
-        return "{$prefix}{$date}-".str_pad((string) $nextNumber, 4, '0', STR_PAD_LEFT);
+        return "{$prefix}-{$date}-".str_pad((string) $nextNumber, 4, '0', STR_PAD_LEFT);
     }
 
     public function calculateItemTotal(float $qty, float $price, float $discount): float

@@ -162,13 +162,22 @@
     </style>
 </head>
 <body>
+    @php $settings = \App\Models\Setting::getSettings(); @endphp
+
     <div class="header">
         <div class="company-info">
-            <h1>My Company</h1>
-            <p>123 Business Street</p>
-            <p>Jakarta, Indonesia</p>
-            <p>Email: company@example.com</p>
-            <p>Phone: +62 21 1234 5678</p>
+            <h1>{{ $settings->company_name ?? 'My Company' }}</h1>
+            @if ($settings->company_address)
+                @foreach (explode("\n", $settings->company_address) as $line)
+                    <p>{{ $line }}</p>
+                @endforeach
+            @endif
+            @if ($settings->company_email)
+                <p>Email: {{ $settings->company_email }}</p>
+            @endif
+            @if ($settings->company_phone)
+                <p>Phone: {{ $settings->company_phone }}</p>
+            @endif
         </div>
         <div class="invoice-info">
             <h2>INVOICE</h2>
@@ -246,7 +255,7 @@
     @endif
 
     <div class="footer">
-        <p>Thank you for your business!</p>
+        <p>{{ $settings->invoice_footer ?? 'Thank you for your business!' }}</p>
         <p>Invoice generated on {{ now()->format('d M Y H:i') }}</p>
     </div>
 </body>
