@@ -190,7 +190,7 @@ function getStatusVariant(status: string): string {
         </template>
     </AppTable>
 
-    <div v-if="invoices.meta.total > 0" class="mt-4">
+    <div v-if="invoices?.meta?.total > 0" class="mt-4">
         <AppPagination :links="invoices.links" :meta="invoices.meta" />
     </div>
 </template>

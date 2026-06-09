@@ -73,6 +73,7 @@ function destroy(customerId: number) {
 </script>
 
 <template>
+    
     <Head title="Customers" />
 
     <Heading title="Customers" description="Manage your customers" />
@@ -152,7 +153,7 @@ function destroy(customerId: number) {
         </template>
     </AppTable>
 
-    <div v-if="customers.meta.total > 0" class="mt-4">
+    <div v-if="customers?.meta?.total > 0" class="mt-4">
         <AppPagination :links="customers.links" :meta="customers.meta" />
     </div>
 </template>

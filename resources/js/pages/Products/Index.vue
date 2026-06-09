@@ -152,7 +152,7 @@ function destroy(productId: number) {
         </template>
     </AppTable>
 
-    <div v-if="products.meta.total > 0" class="mt-4">
+    <div v-if="products?.meta?.total > 0" class="mt-4">
         <AppPagination :links="products.links" :meta="products.meta" />
     </div>
 </template>

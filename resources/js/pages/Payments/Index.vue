@@ -174,7 +174,7 @@ function destroy(paymentId: number) {
         </template>
     </AppTable>
 
-    <div v-if="payments.meta.total > 0" class="mt-4">
+    <div v-if="payments?.meta?.total > 0" class="mt-4">
         <AppPagination :links="payments.links" :meta="payments.meta" />
     </div>
 </template>
