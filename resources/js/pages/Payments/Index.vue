@@ -101,21 +101,26 @@ function destroy(paymentId: number) {
                 "
             />
             <Select
-                :model-value="filters.method ?? ''"
-                @update:model-value="
+                :model-value="filters.method ?? 'all'"
+                @update:model-value="                    
                     (value: unknown) =>
+                    {
+                        const method = value as string 
                         router.get(
                             index.url(),
-                            { method: value as string },
+                            method === 'all' 
+                                ? {}
+                                :  { method },
                             { preserveState: true, replace: true },
                         )
+                    }
                 "
             >
                 <SelectTrigger class="w-[160px]">
                     <SelectValue placeholder="All methods" />
                 </SelectTrigger>
                 <SelectContent>
-                    <SelectItem value="">All methods</SelectItem>
+                    <SelectItem value="all">All methods</SelectItem>
                     <SelectItem v-for="(label, key) in methodLabels" :key="key" :value="key">
                         {{ label }}
                     </SelectItem>

@@ -93,21 +93,25 @@ function destroy(productId: number) {
                 "
             />
             <Select
-                :model-value="filters.status ?? ''"
+                :model-value="filters.status ?? 'all'"
                 @update:model-value="
-                    (value: unknown) =>
+                    (value: unknown) => {
+                        const status = value as string
                         router.get(
                             index.url(),
-                            { status: value as string },
+                            status === 'all'
+                                ? {} 
+                                : { status },
                             { preserveState: true, replace: true },
                         )
+                    }
                 "
             >
                 <SelectTrigger class="w-[140px]">
                     <SelectValue placeholder="All status" />
                 </SelectTrigger>
                 <SelectContent>
-                    <SelectItem value="">All status</SelectItem>
+                    <SelectItem value="all">All status</SelectItem>
                     <SelectItem value="active">Active</SelectItem>
                     <SelectItem value="inactive">Inactive</SelectItem>
                 </SelectContent>
